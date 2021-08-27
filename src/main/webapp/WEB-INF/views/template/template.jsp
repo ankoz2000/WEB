@@ -16,15 +16,11 @@
         <meta name="author" content="" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <spring:url value="/" var="root"/>
-        <%--<spring:url value="/res/assets/css/bootstrap.css" var="bootstrap"/>
-        <spring:url value="/res/assets/css/style-green.css" var="startertemplate"/>
-        <spring:url value="/res/assets/css" var="css"/>
-        <spring:url value="/res/assets/js" var="js"/>
-        <spring:url value="/res/assets/img" var="img"/>--%>
+        <tiles:insertAttribute name="styles"/>
     </head>
 
     <body>
-
+        <tiles:insertAttribute name="menu"/>
+        <tiles:insertAttribute name="content"/>
     </body>
 </html>

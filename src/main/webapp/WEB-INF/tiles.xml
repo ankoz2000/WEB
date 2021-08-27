@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="menu" template="/WEB-INF/views/template/head.jsp">
+    </definition>
+
+    <definition name="styles" template="/WEB-INF/views/template/styles.jsp">
+    </definition>
+
+    <definition name="template" template="/WEB-INF/views/template/template.jsp">
+        <put-attribute name="styles" value="/WEB-INF/views/template/styles.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/template/head.jsp"/>
+    </definition>
+
+    <definition name="dictionaries/add" extends="template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/dictionaries/add.jsp" />
+    </definition>
+
+    <!--<definition name="dictionaries/show" template="/WEB-INF/views/home.jsp">
+        <put-attribute name="menu" value="/WEB-INF/views/template/head.jsp"/>
+        <put-attribute name="content" value="/WEB-INF/views/dictionaries/show.jsp"/>
+    </definition>-->
+
+    <definition name="dictionaries/show" extends="template">
+        <put-attribute name="content" value="/WEB-INF/views/dictionaries/show.jsp"/>
+    </definition>
+
+
+</tiles-definitions>

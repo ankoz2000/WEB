@@ -15,7 +15,7 @@ public class Dictionary {
         this.name = name;
     }
 
-    protected Dictionary() {
+    public Dictionary() {
     }
 
     @Id

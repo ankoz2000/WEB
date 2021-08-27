@@ -8,27 +8,6 @@ public class FrontController {
 
     @RequestMapping({ "/", "/home" })
     public String display() {
-        return "home";
+        return "forward:/dictionaries?show";
     }
-
-    @RequestMapping("/createDictionary")
-    public String createDictionary() {
-        return "createDictionary";
-    }
-
-    @RequestMapping("/dictionaryList")
-    public String dictionaryList() {
-        return "dictionaryList";
-    }
-
-    /* @RequestMapping("/notesList")
-    public String dictionariesPage() {
-        return "list";
-    }
-
-    @RequestMapping("/dictionaries//notes")
-    public String notes() {
-        return "notes";
-    }*/
-
 }
