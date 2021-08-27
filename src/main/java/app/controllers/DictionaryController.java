@@ -5,6 +5,8 @@ import app.services.DictionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +32,13 @@ public class DictionaryController {
         modelAndView.setViewName("dictionaries/show");
         modelAndView.addObject("dictionaries", dictionaries);
         return modelAndView;
+    }
+    @RequestMapping(method = RequestMethod.POST)
+    public String addDictionaryFromForm(@Validated Dictionary dictionary,
+                                        BindingResult bindingResult)  {
+        if(bindingResult.hasErrors()) return "dictionaries/add";
+        dictionaryService.addDictionary(dictionary);
+        return "redirect:/dictionaries/" + dictionary.getName();
     }
 
     /*@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST},

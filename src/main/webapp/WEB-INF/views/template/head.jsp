@@ -6,8 +6,8 @@
         <p class="text-white">DICTIONARY MANAGER</p>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">CREATE</a></li>
-                <li><a href="#">SHOW</a></li>
+                <li><a href="dictionaries?new">CREATE</a></li>
+                <li><a href="dictionaries?show">SHOW</a></li>
                 <li><a href="#">DELETE</a></li>
             </ul>
         </div>

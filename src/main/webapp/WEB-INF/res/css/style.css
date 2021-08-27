@@ -8,7 +8,7 @@ GOOGLE FONT
 @import url(http://fonts.googleapis.com/css?family=Oswald); /* FREE GOOGLE FONT */
 
 *{
-	font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', 'sans-serif', 'FontAwesome';
 }
 .header {
     font-family: 'Oswald', sans-serif;
@@ -37,6 +37,7 @@ body{
     height: 50px;
 }
 .container{
+	font-family: 'Ubuntu', sans-serif;
     overflow:hidden;
     padding-right: 15px;
     padding-left: 15px;
@@ -65,6 +66,7 @@ h1{
 	text-align: center;
 }
 #wrapper{
+    z-index: 10;
 	position: absolute;
 	width: 320px;
 	left: 50%;
@@ -117,29 +119,30 @@ h1{
 #add  input[type="text"]:focus{
 	color: rgb(255, 255, 255);
 }
+
 #add button[type="submit"]{
-	display: block;
-	position: absolute;
-	width: 52px;
-	height: 52px;
-	color: rgb(52, 56, 61);
-	border-radius: 50px;
-	outline: 0;
-	z-index: 2;
-	top: 19px;
-	right: -24px;
-	border: 6px solid rgb(52, 56, 61);
-	font-size: 25px;
-	text-indent: 0px;
-	padding-left: 9px;
-	padding-bottom: 3px;
-	text-align: center;
-}
+    display: block;
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    color: rgb(52, 56, 61);
+    border-radius: 50px;
+    outline: 0;
+    z-index: 2;
+    top: 19px;
+    right: -24px;
+    border: 6px solid rgb(52, 56, 61);
+    font-size: 25px;
+    text-indent: 0px;
+    padding-left: 9px;
+    padding-bottom: 3px;
+    text-align: center;
+ }
 #add button[type="submit"]:hover{
-	color: rgb(0, 126, 165);
-	text-shadow: 0 0 10px rgb(0, 126, 165);
-	cursor: pointer;
-}
+    color: rgb(0, 126, 165);
+    text-shadow: 0 0 10px rgb(0, 126, 165);
+    cursor: pointer;
+ }
 #add p {
 	color: rgb(79, 85, 97);
 	padding: 0 20px;

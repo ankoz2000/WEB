@@ -10,6 +10,9 @@
     <definition name="styles" template="/WEB-INF/views/template/styles.jsp">
     </definition>
 
+    <definition name="modal" template="/WEB-INF/views/template/modal.jsp">
+    </definition>
+
     <definition name="template" template="/WEB-INF/views/template/template.jsp">
         <put-attribute name="styles" value="/WEB-INF/views/template/styles.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/views/template/head.jsp"/>
