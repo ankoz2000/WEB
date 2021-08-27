@@ -10,11 +10,12 @@ import java.util.List;
 @Repository
 @Transactional
 public interface DictionaryRepository extends JpaRepository<Dictionary, Integer> {
-    List<Dictionary> findByName(String name);
+    Dictionary findByName(String name);
 
     @Override
     List<Dictionary> findAll();
 
     @Override
     <S extends Dictionary> S save(S s);
+
 }

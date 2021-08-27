@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,6 +40,11 @@ public class DictionaryController {
         if(bindingResult.hasErrors()) return "dictionaries/add";
         dictionaryService.addDictionary(dictionary);
         return "redirect:/dictionaries/" + dictionary.getName();
+    }
+    @RequestMapping(value="/{name}", method=RequestMethod.GET)
+    public String showDictionaryNotes(@PathVariable String name, Model model) {
+        model.addAttribute(dictionaryService.getDictionaryByName(name));
+        return "forward:/dictionaries?show"; //return "dictionaries/show для конкретного словаря";
     }
 
     /*@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST},

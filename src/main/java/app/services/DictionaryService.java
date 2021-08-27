@@ -20,4 +20,7 @@ public class DictionaryService {
 
     @Transactional
     public void addDictionary(Dictionary dictionary) { dictionaryRepository.save(dictionary); }
+
+    @Transactional
+    public Dictionary getDictionaryByName(String name) { return dictionaryRepository.findByName(name); }
 }
