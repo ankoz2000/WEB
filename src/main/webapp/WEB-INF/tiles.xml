@@ -16,6 +16,7 @@
     <definition name="template" template="/WEB-INF/views/template/template.jsp">
         <put-attribute name="styles" value="/WEB-INF/views/template/styles.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/views/template/head.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/template/scripts.jsp"/>
     </definition>
 
     <definition name="dictionaries/add" extends="template">

@@ -27,5 +27,5 @@
         <tiles:insertAttribute name="menu"/>
         <tiles:insertAttribute name="content"/>
     </body>
-
 </html>
+<tiles:insertAttribute name="scripts" />

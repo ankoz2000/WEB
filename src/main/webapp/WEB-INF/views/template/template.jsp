@@ -24,3 +24,4 @@
         <tiles:insertAttribute name="content"/>
     </body>
 </html>
+<tiles:insertAttribute name="scripts" />
