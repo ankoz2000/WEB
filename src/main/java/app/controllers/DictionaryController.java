@@ -22,6 +22,9 @@ public class DictionaryController {
 
     @RequestMapping(method = RequestMethod.GET, params = "new")
     public String createDictionary(Model model) {
+        if (model == null) {
+            model = (Model) new ModelAndView();
+        }
         model.addAttribute(new Dictionary());
         return "dictionaries/add";
     }
@@ -34,13 +37,16 @@ public class DictionaryController {
         modelAndView.addObject("dictionaries", dictionaries);
         return modelAndView;
     }
+
     @RequestMapping(method = RequestMethod.POST)
     public String addDictionaryFromForm(@Validated Dictionary dictionary,
                                         BindingResult bindingResult)  {
         if(bindingResult.hasErrors()) return "dictionaries/add";
         dictionaryService.addDictionary(dictionary);
-        return "redirect:/dictionaries/" + dictionary.getName();
+        return "redirect:/dictionaries?show";
+        //return "redirect:/dictionaries/" + dictionary.getName();
     }
+
     @RequestMapping(value="/{name}", method=RequestMethod.GET)
     public String showDictionaryNotes(@PathVariable String name, Model model) {
         model.addAttribute(dictionaryService.getDictionaryByName(name));
