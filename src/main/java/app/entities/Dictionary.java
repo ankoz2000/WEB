@@ -31,7 +31,7 @@ public class Dictionary {
     private String condition;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "note_id", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     private Note note;
 
     public int getId() {

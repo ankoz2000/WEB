@@ -15,7 +15,7 @@ public class Note {
     }
 
     @Id
-    @Column(name = "noteId")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
