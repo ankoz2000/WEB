@@ -34,7 +34,7 @@ public class NoteController {
                                         @PathVariable int dictionaryId,
                                         BindingResult bindingResult) {
         if(bindingResult.hasErrors()) return "dictionaries/{dictionaryId}?new";
-        note.setDictionaryKey(dictionaryId);
+        //note.setDictionaryKey(dictionaryId); Как добавить запись так чтобы обновились и связи в бд?
         noteService.addNew(note);
         return "redirect:/dictionaries?show";
     }

@@ -1,15 +1,11 @@
 package app.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "notes")
 public class Note {
-
-    public Note(int id, String text, int dictionaryKey) {
-        this.text = text;
-        this.dictionaryKey = dictionaryKey;
-    }
 
     public Note(int id, String text) {
         this.text = text;
@@ -19,15 +15,15 @@ public class Note {
     }
 
     @Id
-    @Column(name = "id")
+    @Column(name = "noteId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "text")
     private String text;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "notes")
-    private int dictionaryKey;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "note")
+    private List<Dictionary> dictionaries;
 
     public int getId() {
         return id;
@@ -39,13 +35,5 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public int getDictionaryKey() {
-        return dictionaryKey;
-    }
-
-    public void setDictionaryKey(int dictionaryKey) {
-        this.dictionaryKey = dictionaryKey;
     }
 }
