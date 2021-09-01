@@ -1,6 +1,7 @@
 package app.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "dictionaries")
@@ -30,9 +31,17 @@ public class Dictionary {
     @Column(name = "condition")
     private String condition;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id", nullable = false)
-    private Note note;
+    @OrderBy("notes.id ASC")
+    @OneToMany(mappedBy = "dictionary", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> note;
+
+    public List<Note> getNote() {
+        return note;
+    }
+
+    public void setNote(List<Note> note) {
+        this.note = note;
+    }
 
     public int getId() {
         return id;

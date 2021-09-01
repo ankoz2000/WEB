@@ -1,17 +1,17 @@
 package app.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "notes")
 public class Note {
 
-    public Note(int id, String text) {
-        this.text = text;
-    }
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "dictionary_id", nullable = false)
+    private Dictionary dictionary;
 
     public Note() {
+
     }
 
     @Id
@@ -22,8 +22,13 @@ public class Note {
     @Column(name = "text")
     private String text;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "note")
-    private List<Dictionary> dictionaries;
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
+    }
 
     public int getId() {
         return id;
