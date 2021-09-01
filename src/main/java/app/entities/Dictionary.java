@@ -20,7 +20,7 @@ public class Dictionary {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     //@OneToMany(mappedBy = "dictionaryKey", fetch = FetchType.EAGER)
     private int id;
 
@@ -29,6 +29,10 @@ public class Dictionary {
 
     @Column(name = "condition")
     private String condition;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "note_id", nullable = false)
+    private Note note;
 
     public int getId() {
         return id;

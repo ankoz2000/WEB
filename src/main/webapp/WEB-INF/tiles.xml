@@ -10,18 +10,29 @@
     <definition name="styles" template="/WEB-INF/views/template/styles.jsp">
     </definition>
 
+    <definition name="scripts" template="/WEB-INF/views/template/scripts.jsp">
+    </definition>
+
     <definition name="modal" template="/WEB-INF/views/template/modal.jsp">
     </definition>
 
+    <definition name="formNote" template="/WEB-INF/views/notes/add.jsp">
+    </definition>
+    <!-- Главный шаблон -->
     <definition name="template" template="/WEB-INF/views/template/template.jsp">
         <put-attribute name="styles" value="/WEB-INF/views/template/styles.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/views/template/head.jsp"/>
-        <put-attribute name="menu" value="/WEB-INF/views/template/scripts.jsp"/>
+        <put-attribute name="scripts" value="/WEB-INF/views/template/scripts.jsp"/>
     </definition>
-
+    <!-- ************** -->
     <definition name="dictionaries/add" extends="template">
         <put-attribute name="content"
                        value="/WEB-INF/views/dictionaries/add.jsp" />
+    </definition>
+
+    <definition name="notes/add" extends="template">
+        <put-attribute name="content"
+                       value="formNote" />
     </definition>
 
     <!--<definition name="dictionaries/show" template="/WEB-INF/views/home.jsp">

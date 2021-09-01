@@ -20,14 +20,13 @@ public class Note {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "text")
     private String text;
 
-    @Column(name = "dictionary_key")
-    //@ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "notes")
     private int dictionaryKey;
 
     public int getId() {

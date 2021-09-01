@@ -1,7 +1,9 @@
 package app.controllers;
 
 import app.entities.Dictionary;
+import app.entities.Note;
 import app.services.DictionaryService;
+import app.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.PreRemove;
 import java.util.List;
 
 @Controller
@@ -19,7 +22,7 @@ import java.util.List;
 public class DictionaryController {
 
     @Autowired private DictionaryService dictionaryService;
-
+    @Autowired private NoteService noteService;
     @RequestMapping(method = RequestMethod.GET, params = "new")
     public String createDictionary(Model model) {
         if (model == null) {
@@ -32,9 +35,11 @@ public class DictionaryController {
     @RequestMapping(method = RequestMethod.GET, params = "show")
     public ModelAndView showDictionaries() {
         List<Dictionary> dictionaries = dictionaryService.getDictionaries();
+        List<Note> notes = noteService.getNotes();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("dictionaries/show");
         modelAndView.addObject("dictionaries", dictionaries);
+        modelAndView.addObject("notes", notes);
         return modelAndView;
     }
 
@@ -47,10 +52,19 @@ public class DictionaryController {
         //return "redirect:/dictionaries/" + dictionary.getName();
     }
 
-    @RequestMapping(value="/{name}", method=RequestMethod.GET)
-    public String showDictionaryNotes(@PathVariable String name, Model model) {
-        model.addAttribute(dictionaryService.getDictionaryByName(name));
-        return "forward:/dictionaries?show"; //return "dictionaries/show для конкретного словаря";
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST, params = "delete")
+    @PreRemove
+    public ModelAndView deleteNoteFromDictionary(@PathVariable int id)  {
+        noteService.removeNote(id-1);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/dictionaries?show");
+        return modelAndView;
+        //return "redirect:/dictionaries/" + dictionary.getName();
+    }
+
+    @RequestMapping(value="/{id}", method=RequestMethod.GET, params = "new")
+    public String showDictionaryNotes(@PathVariable String id) {
+        return "forward:/notes/" + id + "?new";
     }
 
     /*@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST},
