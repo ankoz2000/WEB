@@ -26,7 +26,7 @@
                     <td colspan="3"><button class="btn add" id="${dictionary.id}"><i class="fas fa-plus"></i></button></td>
                 </tr>
                 <c:forEach var="note" items="${notes}">
-                    <c:choose><c:when test="${note.dictionaryKey == dictionary.id}">
+                    <c:choose><c:when test="${note.getDictionary().id == dictionary.id}">
                     <tr>
                         <td><button class="btn delete"><i class="fa fa-trash" aria-hidden="true"></i></button><button class="btn edit"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
                         <td colspan="2"><c:out value="${note.id + 1}" />. <c:out value="${note.text}" /></td>
