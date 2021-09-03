@@ -3,6 +3,7 @@ package app.services;
 import app.entities.Note;
 import app.repositories.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +19,11 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
+    @Modifying
     @Transactional
     public void removeNote(int id) { noteRepository.deleteById(id); }
 
+    @Modifying
     @Transactional
     public void addNew(Note note) { noteRepository.save(note); }
     /*@Transactional

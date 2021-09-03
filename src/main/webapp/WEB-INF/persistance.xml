@@ -10,9 +10,10 @@
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/db" />
             <property name="hibernate.connection.username" value="postgres" />
             <property name="hibernate.connection.password" value="13241111q" />
-            <!-- <property name="hibernate.show_sql" value="true"/> -->
+            <property name="hibernate.connection.CharSet" value="utf-8" />
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.flushMode" value="FLUSH_AUTO" />
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
             <property name="hibernate.connection.pool_size" value="5"/>
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="20"/>

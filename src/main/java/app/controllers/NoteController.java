@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.entities.Note;
+import app.services.DictionaryService;
 import app.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,18 @@ import java.util.List;
 public class NoteController {
     @Autowired
     private NoteService noteService;
+    @Autowired
+    private DictionaryService dictionaryService;
+
+    @RequestMapping(method = RequestMethod.GET, params = "new")
+    public String createNote(Model model) {
+        if (model == null) {
+            model = (Model) new ModelAndView();
+        }
+        System.out.println("OBJECT ::: " + model.toString());
+        model.addAttribute(new Note());
+        return "notes/add";
+    }
 
     @RequestMapping(value = "/{dictionaryId}", method = RequestMethod.GET, params = "new")
     public String createNote(Model model, @PathVariable int dictionaryId) {
@@ -35,6 +48,7 @@ public class NoteController {
                                         BindingResult bindingResult) {
         if(bindingResult.hasErrors()) return "dictionaries/{dictionaryId}?new";
         //note.setDictionaryKey(dictionaryId); Как добавить запись так чтобы обновились и связи в бд?
+        note.setDictionary(dictionaryService.getDictionaryById(dictionaryId));
         noteService.addNew(note);
         return "redirect:/dictionaries?show";
     }

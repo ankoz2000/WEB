@@ -10,10 +10,10 @@
         <p class="text-white">DICTIONARY MANAGER</p>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="${root}">HOME</a></li>
-                <li><a href="dictionaries?new">CREATE</a></li>
                 <li><a href="dictionaries?show">SHOW</a></li>
                 <li><a href="#">DELETE</a></li>
+                <li><a href="dictionaries?new">CREATE</a></li>
+                <li><a href="${root}">HOME</a></li>
             </ul>
         </div>
     </div>

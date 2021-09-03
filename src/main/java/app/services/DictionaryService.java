@@ -27,4 +27,6 @@ public class DictionaryService {
     @Transactional
     public Dictionary getDictionaryByName(String name) { return dictionaryRepository.findByName(name); }
 
+    @Transactional
+    public Dictionary getDictionaryById(int id) { return dictionaryRepository.getById(id); }
 }

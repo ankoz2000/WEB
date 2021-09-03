@@ -4,7 +4,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-<h1>ADD NOTE</h1>
+<h1>FIND NOTE</h1>
 <div id="wrapper">
 
 	<sf:form id="add" method="POST" action="" autocomplete="off" modelAttribute="note">
@@ -12,4 +12,7 @@
 
 		<button type="submit">&#xf0da;</button>
 	</sf:form>
+</div>
+<div class="container">
+
 </div>

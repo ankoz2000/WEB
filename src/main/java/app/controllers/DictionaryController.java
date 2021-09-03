@@ -63,8 +63,12 @@ public class DictionaryController {
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET, params = "new")
-    public String showDictionaryNotes(@PathVariable String id) {
-        return "forward:/notes/" + id + "?new";
+    public ModelAndView showDictionaryNotes(@PathVariable int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject(dictionaryService.getDictionaryById(id));
+        String viewName = "redirect:/notes?new";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
     }
 
     /*@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST},

@@ -21,7 +21,8 @@ public class Dictionary {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="seq",sequenceName="hibernate_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     //@OneToMany(mappedBy = "dictionaryKey", fetch = FetchType.EAGER)
     private int id;
 
@@ -32,7 +33,7 @@ public class Dictionary {
     private String condition;
 
     @OrderBy("notes.id ASC")
-    @OneToMany(mappedBy = "dictionary", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "dictionary", fetch = FetchType.LAZY)
     private List<Note> note;
 
     public List<Note> getNote() {

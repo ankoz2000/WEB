@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     $('.add').on('click', function() {
         let dictionaryId = $(this).attr("id");
-        let url = "notes/" + dictionaryId + "?new";
+        let url = "dictionaries/" + dictionaryId + "?new";
         $.get(url);
         $.ajax({
             type: 'GET',

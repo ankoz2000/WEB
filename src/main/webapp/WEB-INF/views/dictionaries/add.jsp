@@ -4,8 +4,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01
-    Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <h1>ADD DICTIONARY</h1>
 <div id="wrapper">
 
@@ -18,3 +16,4 @@
                     placeholder="[A-Za-zА-Яа-я]{4}\\s[A-Za-zА-Яа-я]{4}" />
 		<button type="submit">&#xf0da;</button>
 	</sf:form>
+</div>

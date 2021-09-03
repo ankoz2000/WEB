@@ -6,8 +6,7 @@ import javax.persistence.*;
 @Table(name = "notes")
 public class Note {
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "dictionary_id", nullable = false)
+    @ManyToOne(optional = false)
     private Dictionary dictionary;
 
     public Note() {
