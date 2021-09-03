@@ -14,7 +14,7 @@
         <c:forEach var="dictionary" items="${dictionaries}">
             <tbody class="parent">
                 <tr>
-                    <td><c:out value="${dictionary.id + 1}" /></td>
+                    <td><c:out value="${dictionary.id}" /></td>
                     <td><c:out value="${dictionary.name}" /></td>
                     <td><c:out value="${dictionary.condition}" /></td>
                 </tr>
@@ -27,7 +27,7 @@
                     <c:choose><c:when test="${note.getDictionary().id == dictionary.id}">
                     <tr>
                         <td><button class="btn delete"><i class="fa fa-trash" aria-hidden="true"></i></button><button class="btn edit"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
-                        <td colspan="2"><c:out value="${note.id + 1}" />. <c:out value="${note.text}" /></td>
+                        <td colspan="2"><c:out value="${note.id}" />. <c:out value="${note.text}" /></td>
                     </tr>
                     </c:when></c:choose></td>
                 </c:forEach>

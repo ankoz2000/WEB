@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.entities.Dictionary;
 import app.entities.Note;
 import app.services.DictionaryService;
 import app.services.NoteService;
@@ -28,12 +29,12 @@ public class NoteController {
         if (model == null) {
             model = (Model) new ModelAndView();
         }
-        System.out.println("OBJECT ::: " + model.toString());
         model.addAttribute(new Note());
         return "notes/add";
     }
 
-    @RequestMapping(value = "/{dictionaryId}", method = RequestMethod.GET, params = "new")
+    @RequestMapping(value = "/{dictionaryId}",
+            method = RequestMethod.GET, params = "new")
     public String createNote(Model model, @PathVariable int dictionaryId) {
         if (model == null) {
             model = (Model) new ModelAndView();
@@ -42,14 +43,20 @@ public class NoteController {
         return "notes/add";
     }
 
-    @RequestMapping(value = "/{dictionaryId}", method = RequestMethod.POST, params = "new")
+    @RequestMapping(value = "/{dictionaryId}",
+            method = RequestMethod.POST,
+            params = "new",
+            produces = "application/json;charset=UTF-8")
     public String addNoteFromForm(@Validated Note note,
                                         @PathVariable int dictionaryId,
                                         BindingResult bindingResult) {
         if(bindingResult.hasErrors()) return "dictionaries/{dictionaryId}?new";
-        //note.setDictionaryKey(dictionaryId); Как добавить запись так чтобы обновились и связи в бд?
-        note.setDictionary(dictionaryService.getDictionaryById(dictionaryId));
-        noteService.addNew(note);
+        Dictionary dictionary = dictionaryService.getDictionaryById(dictionaryId);
+        note.setDictionary(dictionary);
+        System.out.println("DICTIONARY: " + dictionary.toString());
+        if(!noteService.addNew(note)) {
+            return "redirect:/dictionaries/{dictionaryId}?new";
+        }
         return "redirect:/dictionaries?show";
     }
 

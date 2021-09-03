@@ -32,7 +32,7 @@ public class Dictionary {
     @Column(name = "condition")
     private String condition;
 
-    @OrderBy("notes.id ASC")
+    @OrderBy("id ASC")
     @OneToMany(mappedBy = "dictionary", fetch = FetchType.LAZY)
     private List<Note> note;
 

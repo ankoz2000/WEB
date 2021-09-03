@@ -7,9 +7,14 @@
 <h1>ADD NOTE</h1>
 <div id="wrapper">
 
-	<sf:form id="add" method="POST" action="" autocomplete="off" modelAttribute="note">
-		<sf:input path="text" type="text" id="text" name="text" placeholder="word translate" />
-
+	<sf:form id="add" method="POST" action=""
+	autocomplete="off" modelAttribute="note" accept-charset='UTF-8'>
+		<sf:input path="text" type="text" id="text" name="text" placeholder="word" />
+		<sf:input   path="translate"
+                    type="text"
+                    id="translate"
+                    name="translate"
+                    placeholder="translate" />
 		<button type="submit">&#xf0da;</button>
 	</sf:form>
 </div>

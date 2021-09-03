@@ -18,6 +18,16 @@
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!--Provide support for conversion, formatting and validation -->
+    <bean class = "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <array>
+                <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes" value = "application/json;charset=UTF-8" />
+                </bean>
+            </array>
+        </property>
+    </bean>
+
     <mvc:annotation-driven/>
 
     <mvc:resources mapping="/res/**" location="/WEB-INF/res/"/>
@@ -88,6 +98,7 @@
                   value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
+        <property name="contentType" value="text/html;charset=UTF-8" />
     </bean>
 
     <!-- Provide support for component scanning -->

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,6 @@ import java.util.Map;
 public class DictionaryService {
 
     @Autowired private DictionaryRepository dictionaryRepository;
-    @Autowired private NoteService noteService;
 
     @Transactional
     public List<Dictionary> getDictionaries() {
@@ -28,5 +28,5 @@ public class DictionaryService {
     public Dictionary getDictionaryByName(String name) { return dictionaryRepository.findByName(name); }
 
     @Transactional
-    public Dictionary getDictionaryById(int id) { return dictionaryRepository.getById(id); }
+    public Dictionary getDictionaryById(Integer id) { return dictionaryRepository.findAllById(Collections.singleton(id)).get(0); }
 }

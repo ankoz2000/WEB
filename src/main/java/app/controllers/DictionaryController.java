@@ -22,7 +22,6 @@ import java.util.List;
 public class DictionaryController {
 
     @Autowired private DictionaryService dictionaryService;
-    @Autowired private NoteService noteService;
     @RequestMapping(method = RequestMethod.GET, params = "new")
     public String createDictionary(Model model) {
         if (model == null) {
@@ -55,7 +54,7 @@ public class DictionaryController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST, params = "delete")
     @PreRemove
     public ModelAndView deleteNoteFromDictionary(@PathVariable int id)  {
-        noteService.removeNote(id-1);
+        noteService.removeNote(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/dictionaries?show");
         return modelAndView;
@@ -66,7 +65,7 @@ public class DictionaryController {
     public ModelAndView showDictionaryNotes(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject(dictionaryService.getDictionaryById(id));
-        String viewName = "redirect:/notes?new";
+        String viewName = "redirect:/notes/{id}?new";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }

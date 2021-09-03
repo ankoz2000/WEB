@@ -1,12 +1,15 @@
 package app.entities;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "notes")
 public class Note {
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id",insertable = false, updatable = false)
     private Dictionary dictionary;
 
     public Note() {
@@ -21,6 +24,10 @@ public class Note {
     @Column(name = "text")
     private String text;
 
+    @Column(name = "translate")
+    private String translate;
+
+    @Transactional
     public Dictionary getDictionary() {
         return dictionary;
     }
@@ -39,5 +46,13 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getTranslate() {
+        return translate;
+    }
+
+    public void setTranslate(String translate) {
+        this.translate = translate;
     }
 }

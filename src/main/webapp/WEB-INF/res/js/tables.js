@@ -11,6 +11,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'GET',
             url: url,
+            contentType: 'multipart/form-data; charset=UTF-8',
             success: function(content) {
                 $(location).attr('href', url);
             }
@@ -28,6 +29,7 @@ $(document).ready(function() {
             data: id,//Передаваемые данные в JSON - формате
             url: 'DispatcherServlet',//Название сервлета
             success:function(serverData) {
+                $(location).attr('href', "/dictionaries?show");
                 alert('Element ' + id + " removed successfully");
             },
             error: function(e) {
