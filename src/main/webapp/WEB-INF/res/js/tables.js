@@ -1,6 +1,13 @@
 $(document).ready(function() {
 
     $('.parent').on('click', function(){
+    let dictionaryId = $(this).attr("id");
+    let url = "notes/0?get"
+        $.ajax(url, {
+            success: function(content) {
+                $(this).next().children().append(content);
+            }
+        })
         $(this).next('.hide').toggle();
     });
 

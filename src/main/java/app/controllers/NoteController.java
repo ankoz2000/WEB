@@ -53,19 +53,19 @@ public class NoteController {
         if(bindingResult.hasErrors()) return "dictionaries/{dictionaryId}?new";
         Dictionary dictionary = dictionaryService.getDictionaryById(dictionaryId);
         note.setDictionary(dictionary);
-        System.out.println("DICTIONARY: " + dictionary.toString());
         if(!noteService.addNew(note)) {
             return "redirect:/dictionaries/{dictionaryId}?new";
         }
         return "redirect:/dictionaries?show";
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/*/notes")
-    public ModelAndView allNotes() {
-        List<Note> notes = noteService.getNotes();
+    @RequestMapping(method = RequestMethod.GET, path = "/{dictionaryId}", params = "get")
+    public ModelAndView dictionaryNotes(@PathVariable Integer dictionaryId) {
+        List<Note> notes = noteService.getNotesForDictionary(dictionaryId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("notes");
-        modelAndView.addObject("notesList", notes);
+        modelAndView.addObject("notes", notes);
+        modelAndView.addObject("dictionaryId", dictionaryId);
         return modelAndView;
     }
 }

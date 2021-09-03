@@ -34,11 +34,9 @@ public class DictionaryController {
     @RequestMapping(method = RequestMethod.GET, params = "show")
     public ModelAndView showDictionaries() {
         List<Dictionary> dictionaries = dictionaryService.getDictionaries();
-        List<Note> notes = noteService.getNotes();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("dictionaries/show");
         modelAndView.addObject("dictionaries", dictionaries);
-        modelAndView.addObject("notes", notes);
         return modelAndView;
     }
 
@@ -54,9 +52,8 @@ public class DictionaryController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST, params = "delete")
     @PreRemove
     public ModelAndView deleteNoteFromDictionary(@PathVariable int id)  {
-        noteService.removeNote(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/dictionaries?show");
+        modelAndView.setViewName("redirect:/notes/{id}?delete");
         return modelAndView;
         //return "redirect:/dictionaries/" + dictionary.getName();
     }

@@ -26,6 +26,10 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
+    public List<Note> getNotesForDictionary(Integer id) {
+        return noteRepository.getNotesByDictionaryId(id);
+    }
+
     @Modifying
     @Transactional
     public void removeNote(int id) { noteRepository.deleteById(id); }

@@ -12,4 +12,6 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<Note, Integer> {
     @Override
     void deleteById(@NotNull Integer id);
+
+    List<Note> getNotesByDictionaryId(Integer dictionaryId);
 }
