@@ -8,8 +8,8 @@ import javax.persistence.*;
 @Table(name = "notes")
 public class Note {
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id",insertable = false, updatable = false)
+    @JoinColumn(name = "dictionary", nullable = false)
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Dictionary dictionary;
 
     public Note() {
@@ -32,6 +32,7 @@ public class Note {
         return dictionary;
     }
 
+    @Transactional
     public void setDictionary(Dictionary dictionary) {
         this.dictionary = dictionary;
     }

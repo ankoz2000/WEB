@@ -32,18 +32,6 @@ public class Dictionary {
     @Column(name = "condition")
     private String condition;
 
-    @OrderBy("id ASC")
-    @OneToMany(mappedBy = "dictionary", fetch = FetchType.LAZY)
-    private List<Note> note;
-
-    public List<Note> getNote() {
-        return note;
-    }
-
-    public void setNote(List<Note> note) {
-        this.note = note;
-    }
-
     public int getId() {
         return id;
     }

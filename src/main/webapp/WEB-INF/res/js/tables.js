@@ -1,13 +1,21 @@
-$(document).ready(function() {
 
+$(document).ready(function() {
+    let idOpened = [];
     $('.parent').on('click', function(){
-    let dictionaryId = $(this).attr("id");
-    let url = "notes/0?get"
+    let dictionaryId = $(this).next().find(".add").attr("id");
+    let url = "notes/" + dictionaryId + "?get";
+    let strId = "#" + dictionaryId;
+    if ($(this).next().children().map(function(elem) {
+
+    }
+    )) {
         $.ajax(url, {
+            type: 'GET',
             success: function(content) {
-                $(this).next().children().append(content);
+                $(strId).parent().parent().parent().append(content);
             }
-        })
+        });
+    }
         $(this).next('.hide').toggle();
     });
 

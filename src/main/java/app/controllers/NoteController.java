@@ -39,7 +39,9 @@ public class NoteController {
         if (model == null) {
             model = (Model) new ModelAndView();
         }
-        model.addAttribute(new Note());
+        Note note = new Note();
+        note.setDictionary(dictionaryService.getDictionaryById(dictionaryId));
+        model.addAttribute(note);
         return "notes/add";
     }
 
@@ -63,7 +65,7 @@ public class NoteController {
     public ModelAndView dictionaryNotes(@PathVariable Integer dictionaryId) {
         List<Note> notes = noteService.getNotesForDictionary(dictionaryId);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("notes");
+        modelAndView.setViewName("notes/show");
         modelAndView.addObject("notes", notes);
         modelAndView.addObject("dictionaryId", dictionaryId);
         return modelAndView;

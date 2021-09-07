@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <h1>DICTIONARIES</h1>
 <table class="iksweb">
@@ -23,7 +24,7 @@
                 <tr>
                     <td colspan="3"><button class="btn add" id="${dictionary.id}"><i class="fas fa-plus"></i></button></td>
                 </tr>
-
+                <tiles:insertAttribute name="notes" />
             </tbody>
         </c:forEach>
     </tbody>

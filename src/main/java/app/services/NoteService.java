@@ -38,7 +38,7 @@ public class NoteService {
     @Transactional
     public boolean addNew(Note note) {
         if (!check(note)) return false;
-        noteRepository.save(note);
+        noteRepository.saveAndFlush(note);
         return true;
     }
 

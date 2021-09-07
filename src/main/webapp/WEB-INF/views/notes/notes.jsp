@@ -5,10 +5,8 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
 <c:forEach var="note" items="${notes}">
-    <c:choose><c:when test="${note.getDictionary().id == dictionaryId}">
-    <tr>
+    <tr class="canRemove">
         <td><button class="btn delete"><i class="fa fa-trash" aria-hidden="true"></i></button><button class="btn edit"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
         <td colspan="2"><c:out value="${note.id}" />. <c:out value="${note.text}" /></td>
     </tr>
-    </c:when></c:choose></td>
 </c:forEach>

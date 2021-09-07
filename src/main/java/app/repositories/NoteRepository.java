@@ -14,4 +14,7 @@ public interface NoteRepository extends JpaRepository<Note, Integer> {
     void deleteById(@NotNull Integer id);
 
     List<Note> getNotesByDictionaryId(Integer dictionaryId);
+
+    @Override
+    <S extends Note> S save(S s);
 }
