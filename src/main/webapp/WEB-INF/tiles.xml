@@ -37,10 +37,6 @@
 
     <definition name="notes" template="/WEB-INF/views/notes/notes.jsp">
     </definition>
-    <!--<definition name="dictionaries/show" template="/WEB-INF/views/home.jsp">
-        <put-attribute name="menu" value="/WEB-INF/views/template/head.jsp"/>
-        <put-attribute name="content" value="/WEB-INF/views/dictionaries/show.jsp"/>
-    </definition>-->
     <definition name="allDictionaries" template="/WEB-INF/views/dictionaries/show.jsp">
         <put-attribute name="notes" value="notes" />
     </definition>
@@ -50,6 +46,11 @@
     </definition>
 
     <definition name="notes/show" template="/WEB-INF/views/notes/notes.jsp">
+    </definition>
+
+    <definition name="notes/edit" extends="template">
+        <put-attribute name="content"
+                       value="/WEB-INF/views/notes/edit.jsp" />
     </definition>
 
 

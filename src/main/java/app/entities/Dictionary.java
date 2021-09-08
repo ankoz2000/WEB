@@ -1,10 +1,12 @@
 package app.entities;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "dictionaries")
+@Proxy(lazy=false)
 public class Dictionary {
 
     public Dictionary(String name, String condition) {
@@ -23,7 +25,6 @@ public class Dictionary {
     @Column(name = "id")
     @SequenceGenerator(name="seq",sequenceName="hibernate_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    //@OneToMany(mappedBy = "dictionaryKey", fetch = FetchType.EAGER)
     private int id;
 
     @Column(name = "name")
@@ -46,14 +47,6 @@ public class Dictionary {
 
     public String getCondition() {
         return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    public Dictionary get() {
-        return new Dictionary();
     }
 
     @Override

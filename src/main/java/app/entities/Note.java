@@ -1,11 +1,13 @@
 package app.entities;
 
+import org.hibernate.annotations.Proxy;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "notes")
+@Proxy(lazy=false)
 public class Note {
 
     @JoinColumn(name = "dictionary", nullable = false)
@@ -53,7 +55,7 @@ public class Note {
         return translate;
     }
 
-    public void setTranslate(String translate) {
-        this.translate = translate;
+    public void setId(int id) {
+        this.id = id;
     }
 }

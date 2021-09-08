@@ -1,9 +1,7 @@
 package app.controllers;
 
 import app.entities.Dictionary;
-import app.entities.Note;
 import app.services.DictionaryService;
-import app.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.PreRemove;
 import java.util.List;
 
 @Controller
@@ -46,7 +43,6 @@ public class DictionaryController {
         if(bindingResult.hasErrors()) return "dictionaries/add";
         dictionaryService.addDictionary(dictionary);
         return "redirect:/dictionaries?show";
-        //return "redirect:/dictionaries/" + dictionary.getName();
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.GET, params = "new")
@@ -57,15 +53,5 @@ public class DictionaryController {
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
-
-    /*@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST},
-                    path = "/createDictionary")
-    public ModelAndView allDictionaries() {
-        List<Dictionary> dictionaries = dictionaryService.getDictionaries();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("template");
-        modelAndView.addObject("dictionariesList", dictionaries);
-        return modelAndView;
-    }*/
 
 }

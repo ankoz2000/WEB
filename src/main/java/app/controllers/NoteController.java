@@ -72,14 +72,33 @@ public class NoteController {
     }
     @RequestMapping(method = RequestMethod.POST, path = "/{noteId}", params = "delete")
     public ModelAndView deleteNote(@PathVariable Integer noteId) {
-        /*Note note = noteService.getNote(noteId);
-        Integer dictionaryId = note.getDictionary().getId();*/
         ModelAndView modelAndView = new ModelAndView();
         noteService.removeNote(noteId);
-        //List<Note> notes = noteService.getNotesForDictionary(dictionaryId);
         modelAndView.setViewName("dictionaries/show");
-        //modelAndView.addObject("notes", notes);
-        //modelAndView.addObject("dictionaryId", dictionaryId);
         return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{noteId}", params = "edit")
+    public ModelAndView editNote(@PathVariable Integer noteId) {
+        ModelAndView modelAndView = new ModelAndView();
+        Note note = noteService.getNote(noteId);
+        Integer dictionaryId = note.getDictionary().getId();
+        note.setDictionary(dictionaryService.getDictionaryById(dictionaryId));
+        modelAndView.setViewName("notes/edit");
+        modelAndView.addObject("note", note);
+        modelAndView.addObject("dictionaryId", dictionaryId);
+        return modelAndView;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/{noteId}/{dictionaryId}")
+    public String addNoteFromForm(@Validated Note note,
+                                        @PathVariable Integer noteId,
+                                        @PathVariable Integer dictionaryId,
+                                        BindingResult bindingResult)  {
+        if(bindingResult.hasErrors()) return "dictionaries/show";
+        note.setDictionary(dictionaryService.getDictionaryById(dictionaryId));
+        note.setId(noteId);
+        noteService.addNew(note);
+        return "redirect:/dictionaries?show";
     }
 }

@@ -2,8 +2,6 @@ package app.services;
 
 import app.entities.Note;
 import app.repositories.NoteRepository;
-import com.sun.tools.javac.comp.Todo;
-import org.glassfish.jaxb.core.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
@@ -31,11 +29,11 @@ public class NoteService {
         return noteRepository.getNotesByDictionaryId(id);
     }
 
+    @Transactional
     public Note getNote(Integer id) {
         return noteRepository.getById(id);
     }
 
-    @Modifying
     @Transactional
     public void removeNote(int id) { noteRepository.deleteById(id); }
 
@@ -47,8 +45,8 @@ public class NoteService {
         return true;
     }
 
+
     private boolean check(Note note) {
-        // TODO: 03.09.2021 Сделать изменение кодировки, т.к. при указании русских букв приходят некорректные символы 
         Charset charset = StandardCharsets.UTF_8;
         String content = note.getText()
                 + " "
@@ -56,13 +54,6 @@ public class NoteService {
         byte[] bytes = content.getBytes(StandardCharsets.UTF_8);
         ByteBuffer buff = ByteBuffer.wrap(bytes);
         String condition = charset.decode(buff).toString();
-        //String condition = new String(content.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
         return condition.matches(note.getDictionary().getCondition());
     }
-    /*@Transactional
-    public List<Note> getNotesForDictionary(int id) {
-        return noteRepository.findAll((Note note) -> {
-            return note.getDictionaryKey() == id;
-        });
-    }*/
 }

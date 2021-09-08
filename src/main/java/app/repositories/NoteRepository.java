@@ -17,4 +17,10 @@ public interface NoteRepository extends JpaRepository<Note, Integer> {
 
     @Override
     <S extends Note> S save(S s);
+
+    @Override
+    void delete(Note note);
+
+    @Override
+    Note getById(Integer integer);
 }
