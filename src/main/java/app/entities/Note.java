@@ -27,7 +27,7 @@ public class Note {
     @Column(name = "translate")
     private String translate;
 
-    @Transactional
+
     public Dictionary getDictionary() {
         return dictionary;
     }

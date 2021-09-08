@@ -6,7 +6,7 @@
 
 <c:forEach var="note" items="${notes}">
     <tr class="canRemove">
-        <td><button class="btn delete"><i class="fa fa-trash" aria-hidden="true"></i></button><button class="btn edit"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
-        <td colspan="2"><c:out value="${note.id}" />. <c:out value="${note.text}" /></td>
+        <td><button class="btn delete" value="${note.id}"><i class="fa fa-trash" aria-hidden="true"></i></button><button class="btn edit"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+        <td colspan="2"><c:out value="${note.id}" />. <c:out value="${note.text}" /> - <c:out value="${note.translate}" /></td>
     </tr>
 </c:forEach>

@@ -2,20 +2,21 @@
 $(document).ready(function() {
     let idOpened = [];
     $('.parent').on('click', function(){
-    let dictionaryId = $(this).next().find(".add").attr("id");
-    let url = "notes/" + dictionaryId + "?get";
-    let strId = "#" + dictionaryId;
-    if ($(this).next().children().map(function(elem) {
-
-    }
-    )) {
-        $.ajax(url, {
-            type: 'GET',
-            success: function(content) {
-                $(strId).parent().parent().parent().append(content);
-            }
-        });
-    }
+        let dictionaryId = $(this).next().find(".add").attr("id");
+        if (!idOpened.includes(dictionaryId)) {
+            let url = "notes/" + dictionaryId + "?get";
+            let strId = "#" + dictionaryId;
+            $.ajax(url, {
+                type: 'GET',
+                success: function(content) {
+                    $(strId).parent().parent().parent().append(content);
+                    $("#toBeDelete").remove();
+                    let src = $("#toBeDelete").attr("src");
+                    $("body").append('<script id="toBeDelete" src="res/js/additional.js"></script>')
+                }
+            });
+            idOpened.push(dictionaryId);
+        }
         $(this).next('.hide').toggle();
     });
 
@@ -31,26 +32,6 @@ $(document).ready(function() {
                 $(location).attr('href', url);
             }
         });
-    });
-
-
-    $('.delete').on('click', function() {
-        let note = $(this).parent().next();
-        let content = note.html();
-        let id = content.slice(0, 1);
-        let url = 'dictionaries/' + id + '?delete';
-        $.ajax(url, {
-            type: "POST",//Метод передачи
-            data: id,//Передаваемые данные в JSON - формате
-            url: 'DispatcherServlet',//Название сервлета
-            success:function(serverData) {
-                $(location).attr('href', "/dictionaries?show");
-                alert('Element ' + id + " removed successfully");
-            },
-            error: function(e) {
-                alert('Element ' + id + " may not be deleted");
-            }
-        })
     });
 
 });

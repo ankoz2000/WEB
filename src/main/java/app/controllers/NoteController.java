@@ -70,4 +70,16 @@ public class NoteController {
         modelAndView.addObject("dictionaryId", dictionaryId);
         return modelAndView;
     }
+    @RequestMapping(method = RequestMethod.POST, path = "/{noteId}", params = "delete")
+    public ModelAndView deleteNote(@PathVariable Integer noteId) {
+        /*Note note = noteService.getNote(noteId);
+        Integer dictionaryId = note.getDictionary().getId();*/
+        ModelAndView modelAndView = new ModelAndView();
+        noteService.removeNote(noteId);
+        //List<Note> notes = noteService.getNotesForDictionary(dictionaryId);
+        modelAndView.setViewName("dictionaries/show");
+        //modelAndView.addObject("notes", notes);
+        //modelAndView.addObject("dictionaryId", dictionaryId);
+        return modelAndView;
+    }
 }

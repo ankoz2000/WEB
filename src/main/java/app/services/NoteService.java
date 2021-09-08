@@ -26,8 +26,13 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
+    @Transactional
     public List<Note> getNotesForDictionary(Integer id) {
         return noteRepository.getNotesByDictionaryId(id);
+    }
+
+    public Note getNote(Integer id) {
+        return noteRepository.getById(id);
     }
 
     @Modifying

@@ -49,15 +49,6 @@ public class DictionaryController {
         //return "redirect:/dictionaries/" + dictionary.getName();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST, params = "delete")
-    @PreRemove
-    public ModelAndView deleteNoteFromDictionary(@PathVariable int id)  {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/notes/{id}?delete");
-        return modelAndView;
-        //return "redirect:/dictionaries/" + dictionary.getName();
-    }
-
     @RequestMapping(value="/{id}", method=RequestMethod.GET, params = "new")
     public ModelAndView showDictionaryNotes(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView();
